@@ -6,4 +6,157 @@
     android:layout_height="match_parent"
     tools:context="spolka.i.rudy.ntpandroidklient.OrderActivity">
 
+    <ImageView
+        android:id="@+id/imageView6"
+        android:layout_width="88dp"
+        android:layout_height="65dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:contentDescription="TODO"
+        app:layout_constraintBottom_toTopOf="@+id/relativeLayout3"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/candy2" />
+
+    <ImageView
+        android:id="@+id/imageView5"
+        android:layout_width="89dp"
+        android:layout_height="65dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:contentDescription="TODO"
+        app:layout_constraintBottom_toTopOf="@+id/relativeLayout3"
+        app:layout_constraintStart_toEndOf="@+id/imageView6"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/candy3" />
+
+    <ImageView
+        android:id="@+id/imageView4"
+        android:layout_width="86dp"
+        android:layout_height="65dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintBottom_toTopOf="@+id/relativeLayout3"
+        app:layout_constraintEnd_toStartOf="@+id/imageView6"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/candy1" />
+
+    <RelativeLayout
+        android:id="@+id/relativeLayout3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <Button
+            android:id="@+id/btnOrderCuk1Plus"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:text="@string/TekstButtonPlus1" />
+
+        <EditText
+            android:id="@+id/etOrderCuk1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/etOrderCuk3"
+            android:layout_alignBottom="@+id/etOrderCuk3"
+            android:layout_alignParentStart="true"
+            android:layout_toStartOf="@+id/btnOrderCuk2Plus"
+            android:ems="10"
+            android:inputType="number"
+            android:text="1" />
+
+        <Button
+            android:id="@+id/btnOrderCuk1Minus"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/etOrderCuk1"
+            android:text="@string/TekstButtonMinus1" />
+
+        <Button
+            android:id="@+id/btnOrderCuk2Plus"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_toEndOf="@+id/btnOrderCuk1Plus"
+            android:text="@string/TekstButtonPlus1" />
+
+        <EditText
+            android:id="@+id/etOrderCuk2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/btnOrderCuk3Plus"
+            android:layout_toEndOf="@+id/btnOrderCuk1Plus"
+            android:layout_toStartOf="@+id/btnOrderCuk3Plus"
+            android:ems="10"
+            android:inputType="number"
+            android:text="1" />
+
+        <Button
+            android:id="@+id/btnOrderCuk2Minus"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/btnOrderCuk1Minus"
+            android:layout_alignBottom="@+id/btnOrderCuk1Minus"
+            android:layout_toEndOf="@+id/etOrderCuk1"
+            android:text="@string/TekstButtonMinus1" />
+
+        <Button
+            android:id="@+id/btnOrderCuk3Plus"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_toEndOf="@+id/btnOrderCuk2Plus"
+            android:text="@string/TekstButtonPlus1" />
+
+        <EditText
+            android:id="@+id/etOrderCuk3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/etOrderCuk2"
+            android:layout_alignBottom="@+id/etOrderCuk2"
+            android:layout_alignEnd="@+id/btnOrderCuk3Plus"
+            android:layout_toEndOf="@+id/btnOrderCuk2Minus"
+            android:ems="10"
+            android:inputType="number"
+            android:text="1" />
+
+        <Button
+            android:id="@+id/btnOrderCuk3Minus"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/etOrderCuk3"
+            android:layout_toEndOf="@+id/btnOrderCuk2Minus"
+            android:text="@string/TekstButtonMinus1" />
+
+    </RelativeLayout>
+
+    <Button
+        android:id="@+id/btnOrderZlozZamow"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:text="@string/TekstButtonZamow"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/relativeLayout3" />
+
 </android.support.constraint.ConstraintLayout>

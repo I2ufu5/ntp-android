@@ -6,4 +6,7 @@
     <string name="TekstHaslo">Haslo:</string>
     <string name="TekstButtonLogin">Zaloguj</string>
     <string name="TekstButtonRegister">Zarejestruj</string>
+    <string name="TekstButtonPlus1">+1</string>
+    <string name="TekstButtonMinus1">-1</string>
+    <string name="TekstButtonZamow">Zloz zamowienie</string>
 </resources>
