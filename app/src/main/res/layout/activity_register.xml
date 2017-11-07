@@ -35,10 +35,6 @@
                 android:text="Imie:"
                 android:textSize="20sp" />
 
-            <Space
-                android:layout_width="10dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="4" />
 
             <EditText
                 android:id="@+id/etRegisterName"
@@ -58,10 +54,6 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
-            <Space
-                android:layout_width="match_parent"
-                android:layout_height="20dp"
-                android:layout_weight="10" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -70,10 +62,6 @@
                 android:text="Nazwisko:"
                 android:textSize="20sp" />
 
-            <Space
-                android:layout_width="10dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="4" />
 
             <EditText
                 android:id="@+id/etRegister2ndName"
@@ -100,10 +88,6 @@
                 android:text="Login:"
                 android:textSize="20sp" />
 
-            <Space
-                android:layout_width="10dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="4" />
 
             <EditText
                 android:id="@+id/etRegisterLogin"
@@ -123,10 +107,6 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
-            <Space
-                android:layout_width="match_parent"
-                android:layout_height="20dp"
-                android:layout_weight="10" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -135,14 +115,37 @@
                 android:text="Haslo:"
                 android:textSize="20sp" />
 
-            <Space
-                android:layout_width="10dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="4" />
 
             <EditText
                 android:id="@+id/etRegisterPassword"
                 android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="4"
+                android:ems="10"
+                android:inputType="textPersonName|textPassword" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="19"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+
+            <TextView
+                android:layout_width="66dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="10"
+                android:text="Powtorz haslo:"
+                android:textSize="17sp" />
+
+            <EditText
+                android:id="@+id/etRegisterPasswordConfirm"
+                android:layout_width="200dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="4"
                 android:ems="10"
@@ -165,10 +168,6 @@
                 android:text="Email:"
                 android:textSize="20sp" />
 
-            <Space
-                android:layout_width="10dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="4" />
 
             <EditText
                 android:id="@+id/etRegisterEmail"

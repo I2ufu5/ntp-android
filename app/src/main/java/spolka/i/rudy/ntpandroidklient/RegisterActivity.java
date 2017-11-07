@@ -26,6 +26,7 @@ public class RegisterActivity extends AppCompatActivity {
         final EditText etRegister2ndName = findViewById(R.id.etRegister2ndName);
         final EditText etRegisterLogin = findViewById(R.id.etRegisterLogin);                                //pobranie wartosci z pol
         final EditText etRegisterPassword = findViewById(R.id.etRegisterPassword);
+        final EditText etRegisterPasswordConfirm = findViewById(R.id.etRegisterPasswordConfirm);
         final EditText etRegisterEmail = findViewById(R.id.etRegisterEmail);
         final Button btnRegisterRegister = findViewById(R.id.btnRegisterRegister);
 
@@ -36,6 +37,7 @@ public class RegisterActivity extends AppCompatActivity {
                 final String secondname = etRegister2ndName.getText().toString();                           //przepisanie tych wartosci do stringow zeby je wyslac w requescie
                 final String login = etRegisterLogin.getText().toString();
                 final String password = etRegisterPassword.getText().toString();
+                final String passwordConfirm = etRegisterPasswordConfirm.getText().toString();
                 final String email = etRegisterEmail.getText().toString();
 
                 Response.Listener<String> responseListener = new Response.Listener<String>(){
@@ -64,9 +66,18 @@ public class RegisterActivity extends AppCompatActivity {
                     }
                 };
 
-                dbRegisterRequest registerRequest = new dbRegisterRequest(name,secondname,login,password,email,responseListener);
-                RequestQueue queue = Volley.newRequestQueue(RegisterActivity.this);                                                 //dodanie do kolejki
-                queue.add(registerRequest);
+                final boolean passwordMatch = password.equals(passwordConfirm);
+                if (passwordMatch) {
+                    dbRegisterRequest registerRequest = new dbRegisterRequest(name, secondname, login, password, email, responseListener);
+                    RequestQueue queue = Volley.newRequestQueue(RegisterActivity.this);                                                 //dodanie do kolejki
+                    queue.add(registerRequest);
+                } else {
+                    AlertDialog.Builder builder = new AlertDialog.Builder(RegisterActivity.this);       //jesli nie to blad wypiedala
+                    builder.setMessage("Podane hasla nie sa takie same")
+                            .setNeutralButton("OK", null)
+                            .create()
+                            .show();
+                }
             }
 
             });
