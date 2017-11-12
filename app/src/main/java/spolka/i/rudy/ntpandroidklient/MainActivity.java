@@ -1,22 +1,26 @@
 package spolka.i.rudy.ntpandroidklient;
 
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
+
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
-import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
+
+import java.util.HashMap;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
+
+    SessionManager currentSession;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,6 +76,9 @@ public class MainActivity extends AppCompatActivity
     }
 
     private void displaySelectedScreen(int itemId) {
+        currentSession = new SessionManager(MainActivity.this);
+        HashMap<String, String> user = currentSession.getUserDetails();
+        String login= user.get(SessionManager.KEY_NAME);
 
         //creating fragment object
         Fragment fragment = null;
@@ -79,13 +86,24 @@ public class MainActivity extends AppCompatActivity
         //initializing the fragment object which is selected
         switch (itemId) {
             case R.id.nav_menu1:
-                fragment = new Menu1();
+                fragment = new LoginActivity();
                 break;
             case R.id.nav_menu2:
-                fragment = new Menu2();
+                if(!currentSession.isLoggedIn()){
+                    fragment = new RegisterActivity();
+                }else{
+                    fragment = new LoginActivity();
+                }
                 break;
             case R.id.nav_menu3:
-                fragment = new Menu3();
+                if(currentSession.isLoggedIn()){
+                    fragment = new OrderActivity();
+                }else{
+                    Toast tost = Toast.makeText(MainActivity.this,"Aby zlozyc zamowienie, zaloguj sie",Toast.LENGTH_SHORT);
+                    tost.show();
+                    fragment = new LoginActivity();
+                }
+
                 break;
         }
 
