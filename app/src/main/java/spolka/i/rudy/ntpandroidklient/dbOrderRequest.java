@@ -1,5 +1,7 @@
 package spolka.i.rudy.ntpandroidklient;
 
+import android.util.Log;
+
 import com.android.volley.Response;
 import com.android.volley.toolbox.StringRequest;
 
@@ -27,6 +29,9 @@ public class dbOrderRequest extends StringRequest {
         params.put("prooductCount1",String.valueOf(productCount1));
         params.put("prooductCount2",String.valueOf(productCount2));
         params.put("prooductCount3",String.valueOf(productCount3));
+        Log.e("Tag", String.valueOf(productCount1));
+        Log.e("Tag", String.valueOf(productCount2));
+        Log.e("Tag", String.valueOf(productCount3));
     }
 
     @Override

@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -15,7 +16,11 @@ import com.android.volley.toolbox.Volley;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.HashMap;
+
 public class OrderActivity extends AppCompatActivity {
+
+    SessionManager currentSession;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,8 +41,12 @@ public class OrderActivity extends AppCompatActivity {
         final Button btnOrderCuk3Plus = findViewById(R.id.btnOrderCuk3Plus);
         final Button btnOrderCuk3Minus = findViewById(R.id.btnOrderCuk3Minus);
 
-        //final TextView etOrderUserIdText = getView().findViewById(R.id.etOrderUserIdText);
+        final TextView etOrderUserId = findViewById(R.id.etOrderUserID);
 
+        currentSession = new SessionManager(OrderActivity.this);
+        HashMap<String, String> user = currentSession.getUserDetails();
+        String userID = user.get(SessionManager.KEY_USER_ID);
+        etOrderUserId.setText(userID);
 
         btnOrderCuk1Plus.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -107,6 +116,7 @@ public class OrderActivity extends AppCompatActivity {
                         try {
                             JSONObject jsonObject = new JSONObject(response);
                             boolean success = jsonObject.getBoolean("success");
+
                             if(success)
                                 Log.e("TAG","OK");
                             else
@@ -130,7 +140,9 @@ public class OrderActivity extends AppCompatActivity {
 
                     }
                 };
-                //uid musi zostac poprawione jak dodam obluge sesji
+
+
+
                 dbOrderRequest orderRequest = new dbOrderRequest(10, prodCount1, prodCount2, prodCount3, responseListener);
                 RequestQueue queue = Volley.newRequestQueue(OrderActivity.this);                                    //dodanie requestu do kolejki
                 queue.add(orderRequest);
