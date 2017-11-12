@@ -1,19 +1,15 @@
 package spolka.i.rudy.ntpandroidklient;
 
+import android.support.v4.app.Fragment;
 import android.content.DialogInterface;
-import android.content.Intent;
+import android.support.annotation.Nullable;
 import android.support.v7.app.AlertDialog;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.LinearLayout;
-import android.widget.PopupWindow;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.RequestQueue;
@@ -25,44 +21,47 @@ import org.json.JSONObject;
 
 import java.util.HashMap;
 
-public class LoginActivity extends AppCompatActivity {
+public class LoginActivity extends Fragment {
 
     SessionManager currentSession;
 
+    @Nullable
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
+    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
+        return inflater.inflate(R.layout.activity_login, container, false);
+    }
+    @Override
+    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view,savedInstanceState);
 
+        currentSession = new SessionManager(getActivity());
 
-        currentSession = new SessionManager(LoginActivity.this);
-
-        final EditText etLogin = findViewById(R.id.etLogin);
-        final EditText etPassword = findViewById(R.id.etPassword);
-        final Button btnLoginRegister = findViewById(R.id.btnLoginRegister);
-        final Button btnLoginLogin = findViewById(R.id.btnLoginLogin);
+        final EditText etLogin = getView().findViewById(R.id.etLogin);
+        final EditText etPassword = getView().findViewById(R.id.etPassword);
+        final Button btnLoginLogin = getView().findViewById(R.id.btnLoginLogin);
 
 
        if(currentSession.isLoggedIn()){
             HashMap<String,String> userCred = currentSession.getUserDetails();
-            String username = userCred.get(SessionManager.KEY_USER_ID);
+            String username = userCred.get(SessionManager.KEY_NAME);
 
-            AlertDialog.Builder builder = new AlertDialog.Builder(LoginActivity.this);
+            AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
             builder.setMessage("Jestes zalogowany jako:" + username );
 
             builder.setNegativeButton("Pozostan\nzalogowany", new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialogInterface, int i) {
-                    Intent cancelLogoutIntent = new Intent(LoginActivity.this, OrderActivity.class);
-                    LoginActivity.this.startActivity(cancelLogoutIntent);
+                    //dissmiss fragment
                 }
             });
 
            builder.setPositiveButton("Wyloguj", new DialogInterface.OnClickListener() {
                @Override
                public void onClick(DialogInterface dialogInterface, int i) {
-                    currentSession.logoutUser();
+                   currentSession.logoutUser();
+                   Toast tost = Toast.makeText(getActivity(),"Wyczyszczono dane sesji",Toast.LENGTH_SHORT);
+                   tost.show();
                }
            });
 
@@ -70,13 +69,6 @@ public class LoginActivity extends AppCompatActivity {
                    .show();
         }
 
-        btnLoginRegister.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent registerIntent = new Intent(LoginActivity.this, RegisterActivity.class);                   //listener do guzika rejestracja -> przenosi do rejestraji
-                LoginActivity.this.startActivity(registerIntent);
-            }
-        });
 
         btnLoginLogin.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -99,14 +91,13 @@ public class LoginActivity extends AppCompatActivity {
 
                             if (success) {
                                 currentSession.createLoginSession(userID,login,email);
-                                Toast tost = Toast.makeText(getApplicationContext(),"Zalogowano",Toast.LENGTH_SHORT);
+                                Toast tost = Toast.makeText(getActivity(),"Zalogowano",Toast.LENGTH_SHORT);
                                 tost.show();
 
-                                Intent loginIntent = new Intent(LoginActivity.this, OrderActivity.class);
-                                LoginActivity.this.startActivity(loginIntent);
+                                //dissmiss fragment
 
                             } else {
-                                AlertDialog.Builder builder = new AlertDialog.Builder(LoginActivity.this);
+                                AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
                                 builder.setMessage("Login Failed")
                                         .setNegativeButton("Retry", null)
                                         .create()
@@ -121,14 +112,14 @@ public class LoginActivity extends AppCompatActivity {
                 };
 
                 if (password.length() <= 0) {
-                    AlertDialog.Builder builder = new AlertDialog.Builder(LoginActivity.this);
+                    AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
                     builder.setMessage("Haslo nie moze byc puste")
                             .setNeutralButton("OK", null)
                             .create()
                             .show();
                 }else {
                     dbLoginRequest loginRequest = new dbLoginRequest(login, password, responseListener);
-                    RequestQueue queue = Volley.newRequestQueue(LoginActivity.this);                                    //dodanie requestu do kolejki
+                    RequestQueue queue = Volley.newRequestQueue(getActivity());                                    //dodanie requestu do kolejki
                     queue.add(loginRequest);
                 }
             }

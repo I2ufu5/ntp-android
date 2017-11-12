@@ -1,9 +1,11 @@
 package spolka.i.rudy.ntpandroidklient;
 
+import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
+import android.widget.Toast;
 
 import java.util.HashMap;
 
@@ -53,10 +55,6 @@ public class SessionManager {
     public void logoutUser(){
         editor.clear();
         editor.commit();
-        Intent i = new Intent(context, LoginActivity.class);
-        i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-        i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        context.startActivity(i);
     }
     public void checkLogin(){
         if(!this.isLoggedIn()){
