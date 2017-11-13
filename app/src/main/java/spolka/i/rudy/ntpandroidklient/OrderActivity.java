@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -53,7 +54,7 @@ public class OrderActivity extends Fragment {
 
         currentSession = new SessionManager(getActivity());
         HashMap<String, String> user = currentSession.getUserDetails();
-        String userID = user.get(SessionManager.KEY_USER_ID);
+        final String userID = user.get(SessionManager.KEY_USER_ID);
         etOrderUserId.setText(userID);
 
         btnOrderCuk1Plus.setOnClickListener(new View.OnClickListener() {
@@ -113,22 +114,18 @@ public class OrderActivity extends Fragment {
         btnOrderZlozZamow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                final String prodCount1 = etOrderCuk1.getText().toString();
+                final String prodCount2 = etOrderCuk2.getText().toString();
+                final String prodCount3 = etOrderCuk3.getText().toString();
 
-                final int prodCount1 = Integer.valueOf(etOrderCuk1.getText().toString());
-                final int prodCount2 = Integer.valueOf(etOrderCuk2.getText().toString());
-                final int prodCount3 = Integer.valueOf(etOrderCuk3.getText().toString());
-
-                final Response.Listener<String> responseListener = new Response.Listener<String>(){
+                Response.Listener<String> responseListener = new Response.Listener<String>(){
                     @Override
-                    public void onResponse(String response){
+                    public void onResponse(String response){                                // nasluch odpowiedzi z bazy
                         try {
-                            JSONObject jsonObject = new JSONObject(response);
-                            boolean success = jsonObject.getBoolean("success");
+                            Log.e("tag",response);
+                            JSONObject jsonResponse = new JSONObject(response);                             //rozpakowanie odpowiedzi
+                            boolean success = jsonResponse.getBoolean("success");
 
-                            if(success)
-                                Log.e("TAG","OK");
-                            else
-                                Log.e("TAG","FAIL");
                             if(success) {
                                 AlertDialog.Builder popupSuccess = new AlertDialog.Builder(getActivity());
                                 popupSuccess.setMessage("Zamowienie zostalo zlozone")
@@ -143,15 +140,14 @@ public class OrderActivity extends Fragment {
                                         .show();
                             }
                         } catch (JSONException e) {
-                            e.printStackTrace();
+                            e.printStackTrace();                                                                               //wyjatek jak przyjdzie null
                         }
 
                     }
                 };
 
 
-
-                dbOrderRequest orderRequest = new dbOrderRequest(10, prodCount1, prodCount2, prodCount3, responseListener);
+                dbOrderRequest orderRequest = new dbOrderRequest(Integer.valueOf(userID), prodCount1, prodCount2, prodCount3, responseListener);
                 RequestQueue queue = Volley.newRequestQueue(getActivity());                                    //dodanie requestu do kolejki
                 queue.add(orderRequest);
             }

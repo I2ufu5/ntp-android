@@ -19,19 +19,16 @@ import java.util.Map;
 
 public class dbOrderRequest extends StringRequest {
 
-    private static final String REGISTER_REQUEST_URL = "https://ntpprojekt.000webhostapp.com/ZamowOrder.php";                       // pehap nie opisany !!!!!!!!
+    private static final String REGISTER_REQUEST_URL = "https://ntpprojekt.000webhostapp.com/ZamowOrder.php";
     private Map<String, String> params;
 
-    public dbOrderRequest(int userID, int productCount1,int productCount2, int productCount3, Response.Listener<String> listener) {
+    public dbOrderRequest(int userID, String productCount1, String productCount2, String productCount3, Response.Listener<String> listener) {
         super(Method.POST, REGISTER_REQUEST_URL, listener,null);
         params = new HashMap<>();
         params.put("userID",String.valueOf(userID));
-        params.put("prooductCount1",String.valueOf(productCount1));
-        params.put("prooductCount2",String.valueOf(productCount2));
-        params.put("prooductCount3",String.valueOf(productCount3));
-        Log.e("Tag", String.valueOf(productCount1));
-        Log.e("Tag", String.valueOf(productCount2));
-        Log.e("Tag", String.valueOf(productCount3));
+        params.put("productCount1",productCount1);
+        params.put("productCount2",productCount2);
+        params.put("productCount3",productCount3);
     }
 
     @Override

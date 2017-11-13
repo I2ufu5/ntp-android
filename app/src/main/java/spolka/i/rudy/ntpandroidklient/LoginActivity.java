@@ -76,14 +76,12 @@ public class LoginActivity extends Fragment {
                 final String login = etLogin.getText().toString();                                                             //zrzutka pol do zmiennych ktore ida pozniej z requestem
                 final String password = etPassword.getText().toString();
 
-                Response.Listener<String> responseListener = new Response.Listener<String>() {                              //oczekowanie na odpowiedz z bazy
 
+                Response.Listener<String> responseListener = new Response.Listener<String>() {                              //oczekowanie na odpowiedz z bazy
                     @Override
                     public void onResponse(String response) {
-                        // zabezpieczenie przed wyjatkiem jak null przyjdzie w odpowiedzi
-                        JSONObject jsonResponse = null;
                         try {
-                            jsonResponse = new JSONObject(response);
+                            JSONObject jsonResponse = new JSONObject(response);
                             boolean success = jsonResponse.getBoolean("success");
                             String login = jsonResponse.getString("login");
                             String email = jsonResponse.getString("email");
