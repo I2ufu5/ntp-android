@@ -129,5 +129,9 @@ public class MainActivity extends AppCompatActivity
         return true;
     }
 
-
+    @Override
+    protected void onStop() {
+        super.onStop();
+        currentSession.logoutUser();
+    }
 }

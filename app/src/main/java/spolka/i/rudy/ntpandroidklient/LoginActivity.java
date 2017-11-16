@@ -3,6 +3,7 @@ package spolka.i.rudy.ntpandroidklient;
 import android.support.v4.app.Fragment;
 import android.content.DialogInterface;
 import android.support.annotation.Nullable;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AlertDialog;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -52,7 +53,11 @@ public class LoginActivity extends Fragment {
             builder.setNegativeButton("Pozostan\nzalogowany", new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialogInterface, int i) {
-                    //dissmiss fragment
+                    Fragment someFragment = new OrderActivity();
+                    FragmentTransaction transaction = getFragmentManager().beginTransaction();
+                    transaction.replace(R.id.content_frame, someFragment ); // give your fragment container id in first parameter
+                    transaction.addToBackStack(null);  // if written, this transaction will be added to backstack
+                    transaction.commit();
                 }
             });
 
