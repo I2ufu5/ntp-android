@@ -122,10 +122,8 @@ public class OrderActivity extends Fragment {
                     @Override
                     public void onResponse(String response){                                // nasluch odpowiedzi z bazy
                         try {
-                            Log.e("tag",response);
                             JSONObject jsonResponse = new JSONObject(response);                             //rozpakowanie odpowiedzi
                             boolean success = jsonResponse.getBoolean("success");
-
                             if(success) {
                                 AlertDialog.Builder popupSuccess = new AlertDialog.Builder(getActivity());
                                 popupSuccess.setMessage("Zamowienie zostalo zlozone")
