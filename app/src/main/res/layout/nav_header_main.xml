@@ -16,7 +16,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingTop="@dimen/nav_header_vertical_spacing"
-        android:text="Tutaj będzie info o zalogowanym userze"
-        android:textAppearance="?android:textAppearanceLarge" />
+        android:text="Tu będzie info o userze"
+        android:textAppearance="?android:textAppearanceLarge"
+        android:id="@+id/loggedUsername"/>
 
 </LinearLayout>
