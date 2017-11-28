@@ -83,8 +83,18 @@ public class OrderHistoryActivity extends Fragment {
                         listView.invalidateViews();
                     }
                 } catch (JSONException e) {
-                    Toast.makeText(getActivity(), "Error: " + e.toString(),
-                            Toast.LENGTH_SHORT).show();
+                    HashMap<String,String> map = new HashMap<String, String>();
+                    map.put("Data zlozenia zamowienia","Brak zamowien");
+                    map.put("Data realizacji zamowienia"," ");
+                    map.put("Ilosc Produktu 1"," ");
+                    map.put("Ilosc Produktu 2"," ");
+                    map.put("Ilosc Produktu 3"," ");
+                    orderList.add(map);
+
+                    SimpleAdapter simpleAdapter = new SimpleAdapter(getContext(), orderList, R.layout.order_list_layout,from ,to);
+                    listView.setAdapter(simpleAdapter);
+                    simpleAdapter.notifyDataSetChanged();
+                    listView.invalidateViews();
                 }
 
 
