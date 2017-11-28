@@ -13,9 +13,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.HashMap;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -26,9 +28,10 @@ public class MainActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -39,7 +42,7 @@ public class MainActivity extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-        //add this line to display menu1 when the activity is loaded
+
         displaySelectedScreen(R.id.nav_menu1);
     }
 
@@ -77,17 +80,13 @@ public class MainActivity extends AppCompatActivity
 
     private void displaySelectedScreen(int itemId) {
         currentSession = new SessionManager(MainActivity.this);
-        HashMap<String, String> user = currentSession.getUserDetails();
-        String login= user.get(SessionManager.KEY_NAME);
-
-        //creating fragment object
         Fragment fragment = null;
 
-        //initializing the fragment object which is selected
         switch (itemId) {
             case R.id.nav_menu1:
                 fragment = new LoginActivity();
                 break;
+
             case R.id.nav_menu2:
                 if(!currentSession.isLoggedIn()){
                     fragment = new RegisterActivity();
@@ -95,6 +94,7 @@ public class MainActivity extends AppCompatActivity
                     fragment = new LoginActivity();
                 }
                 break;
+
             case R.id.nav_menu3:
                 if(currentSession.isLoggedIn()){
                     fragment = new OrderActivity();
@@ -103,7 +103,16 @@ public class MainActivity extends AppCompatActivity
                     tost.show();
                     fragment = new LoginActivity();
                 }
+                break;
 
+            case R.id.nav_menu4:
+                if(currentSession.isLoggedIn()){
+                    fragment = new OrderHistoryActivity();
+                }else{
+                    Toast tost = Toast.makeText(MainActivity.this,"Aby przegladac zamowienia, zaloguj sie",Toast.LENGTH_SHORT);
+                    tost.show();
+                    fragment = new LoginActivity();
+                }
                 break;
         }
 

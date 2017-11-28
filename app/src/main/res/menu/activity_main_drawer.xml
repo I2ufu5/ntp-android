@@ -14,6 +14,10 @@
             android:id="@+id/nav_menu3"
             android:icon="@mipmap/ic_launcher"
             android:title="Skladanie zamowien" />
+        <item
+            android:id="@+id/nav_menu4"
+            android:icon="@mipmap/ic_launcher"
+            android:title="Historia zamowien" />
 
     </group>
 
