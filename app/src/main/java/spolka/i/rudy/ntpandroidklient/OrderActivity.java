@@ -71,7 +71,9 @@ public class OrderActivity extends Fragment {
             public void onClick(View view) {
                 String s = etOrderCuk1.getText().toString();
                 int i = Integer.parseInt(s);
-                etOrderCuk1.setText(String.valueOf(i-1));
+                if(i>0) {
+                    etOrderCuk1.setText(String.valueOf(i - 1));
+                }
             }
         });
 
@@ -89,7 +91,9 @@ public class OrderActivity extends Fragment {
             public void onClick(View view) {
                 String s = etOrderCuk2.getText().toString();
                 int i = Integer.parseInt(s);
-                etOrderCuk2.setText(String.valueOf(i-1));
+                if(i>0) {
+                    etOrderCuk2.setText(String.valueOf(i - 1));
+                }
             }
         });
 
@@ -107,7 +111,9 @@ public class OrderActivity extends Fragment {
             public void onClick(View view) {
                 String s = etOrderCuk3.getText().toString();
                 int i = Integer.parseInt(s);
-                etOrderCuk3.setText(String.valueOf(i-1));
+                if(i>0) {
+                    etOrderCuk3.setText(String.valueOf(i - 1));
+                }
             }
         });
 
