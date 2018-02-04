@@ -115,7 +115,8 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="4"
                     android:ems="10"
-                    android:inputType="textPassword" />
+                    android:inputType="textPassword"
+                    android:hint="minimum 6 znaków" />
 
                 <EditText
                     android:id="@+id/etRegisterPasswordConfirm"
@@ -154,7 +155,13 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/TekstButtonRegister" />
+
         </LinearLayout>
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            tools:layout_editor_absoluteY="316dp" />
 
     </LinearLayout>
 

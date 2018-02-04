@@ -14,7 +14,7 @@ import java.util.Map;
 
 public class dbOrderHistoryRequest extends StringRequest{
 
-    private static final String ORDERHISTORY_REQUEST_URL = "https://ntpprojekt.000webhostapp.com/SZAMOWIENIA.php";
+    private static final String ORDERHISTORY_REQUEST_URL = "https://ntpprojekt.000webhostapp.com/historiazamowien.php";
     private Map<String, String> params;
 
     public dbOrderHistoryRequest(String userID, Response.Listener<String> listener) {

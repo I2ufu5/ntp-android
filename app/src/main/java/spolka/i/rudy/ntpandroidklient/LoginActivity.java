@@ -6,6 +6,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AlertDialog;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -87,6 +88,8 @@ public class LoginActivity extends Fragment {
                     public void onResponse(String response) {
                         try {
                             JSONObject jsonResponse = new JSONObject(response);
+                            Log.e("TAG",jsonResponse.toString());
+
                             boolean success = jsonResponse.getBoolean("success");
                             String login = jsonResponse.getString("login");
                             String email = jsonResponse.getString("email");
@@ -97,11 +100,10 @@ public class LoginActivity extends Fragment {
                                 Toast tost = Toast.makeText(getActivity(),"Zalogowano",Toast.LENGTH_SHORT);
                                 tost.show();
 
-                                //dissmiss fragment
 
                             } else {
                                 AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-                                builder.setMessage("Login Failed")
+                                builder.setMessage("Nieudane logowanie")
                                         .setNegativeButton("Retry", null)
                                         .create()
                                         .show();
@@ -116,13 +118,13 @@ public class LoginActivity extends Fragment {
 
                 if (password.length() <= 0) {
                     AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-                    builder.setMessage("Haslo nie moze byc puste")
+                    builder.setMessage("Podaj hasło")
                             .setNeutralButton("OK", null)
                             .create()
                             .show();
                 }else {
                     dbLoginRequest loginRequest = new dbLoginRequest(login, password, responseListener);
-                    RequestQueue queue = Volley.newRequestQueue(getActivity());                                    //dodanie requestu do kolejki
+                    RequestQueue queue = Volley.newRequestQueue(getActivity()); //dodanie requestu do kolejki
                     queue.add(loginRequest);
                 }
             }

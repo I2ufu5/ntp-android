@@ -6,31 +6,31 @@
 
     <TextView
         android:layout_width="0dp"
-        android:layout_height="40dp"
+        android:layout_height="50dp"
         android:textSize="20dp"
         android:layout_weight="4"
         android:id="@+id/orderListItem1"/>
     <TextView
         android:layout_width="0dp"
-        android:layout_height="40dp"
+        android:layout_height="50dp"
         android:textSize="20dp"
         android:layout_weight="4"
         android:id="@+id/orderListItem2"/>
     <TextView
         android:layout_width="0dp"
-        android:layout_height="40dp"
+        android:layout_height="50dp"
         android:textSize="20dp"
         android:layout_weight="1"
         android:id="@+id/orderListItem3"/>
     <TextView
         android:layout_width="0dp"
-        android:layout_height="40dp"
+        android:layout_height="50dp"
         android:textSize="20dp"
         android:layout_weight="1"
         android:id="@+id/orderListItem4"/>
     <TextView
         android:layout_width="0dp"
-        android:layout_height="40dp"
+        android:layout_height="50dp"
         android:textSize="20dp"
         android:layout_weight="1"
         android:id="@+id/orderListItem5"/>

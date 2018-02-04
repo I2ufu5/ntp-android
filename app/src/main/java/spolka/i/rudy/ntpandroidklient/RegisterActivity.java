@@ -1,10 +1,11 @@
 package spolka.i.rudy.ntpandroidklient;
 
+import android.os.Debug;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.content.Intent;
 import android.support.v7.app.AlertDialog;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -26,7 +27,7 @@ public class RegisterActivity extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
-        return inflater.inflate(R.layout.activity_register, container, false);
+        return inflater.inflate(R.layout.activity_register_old, container, false);
     }
 
     @Override
@@ -78,19 +79,47 @@ public class RegisterActivity extends Fragment {
                 };
 
                 final boolean passwordMatch = password.equals(passwordConfirm);
-                if (passwordMatch) {
-                    dbRegisterRequest registerRequest = new dbRegisterRequest(name, secondname, login, password, email, responseListener);
-                    RequestQueue queue = Volley.newRequestQueue(getActivity());                                                 //dodanie do kolejki
-                    queue.add(registerRequest);
-                } else {
+
+                if (etRegisterPassword.length()<6)
+                {
                     AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());       //jesli nie to blad wypiedala
-                    builder.setMessage("Podane hasla nie sa takie same")
+                    builder.setMessage("Hasło powinno składać się conajmniej z 6 znaków")
                             .setNeutralButton("OK", null)
                             .create()
                             .show();
                 }
+
+                if (!isEmailValid(etRegisterEmail.getText().toString()))
+                {
+                    Log.d("EMAIL",etRegisterEmail.getText().toString());
+                    AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());       //jesli nie to blad wypiedala
+                    builder.setMessage("Podany email jest niepoprawny")
+                            .setNeutralButton("OK", null)
+                            .create()
+                            .show();
+                }
+                if (!passwordMatch)
+                {
+                    AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());       //jesli nie to blad wypiedala
+                    builder.setMessage("Podane hasła nie są takie same")
+                            .setNeutralButton("OK", null)
+                            .create()
+                            .show();
+                }
+
+                if (passwordMatch & isEmailValid(etRegisterEmail.getText().toString()) & etRegisterPassword.length()>=6) {
+                    dbRegisterRequest registerRequest = new dbRegisterRequest(name, secondname, login, password, email, responseListener);
+                    RequestQueue queue = Volley.newRequestQueue(getActivity());                                                 //dodanie do kolejki
+                    queue.add(registerRequest);
+                }
             }
 
-            });
+        });
+
+
+    }
+
+    private boolean isEmailValid(String email){
+        return android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches();
     }
 }
