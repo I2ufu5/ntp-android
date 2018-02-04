@@ -100,6 +100,11 @@ public class LoginActivity extends Fragment {
                                 Toast tost = Toast.makeText(getActivity(),"Zalogowano",Toast.LENGTH_SHORT);
                                 tost.show();
 
+                                Fragment fr = new OrderActivity();
+                                FragmentTransaction transaction = getFragmentManager().beginTransaction();
+                                transaction.replace(R.id.content_frame, fr ); // give your fragment container id in first parameter
+                                transaction.addToBackStack(null);  // if written, this transaction will be added to backstack
+                                transaction.commit();
 
                             } else {
                                 AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());

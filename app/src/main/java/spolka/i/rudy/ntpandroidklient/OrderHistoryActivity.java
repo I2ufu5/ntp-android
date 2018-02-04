@@ -63,7 +63,11 @@ public class OrderHistoryActivity extends Fragment {
                     for (int i = 0; i < jsonMainNode.length(); i++) {
                         JSONObject jsonChildNode = jsonMainNode.getJSONObject(i);
                         String DataZlozenia = jsonChildNode.getString("Data_Zlozenia");
-                        String DataRealizacji = jsonChildNode.getString("Data_Realizacji");
+                        String DataRealizacji;
+                        if(jsonChildNode.getString("Data_Realizacji") == "null")
+                            DataRealizacji = "Niezrealizowano";
+                        else
+                        DataRealizacji = jsonChildNode.getString("Data_Realizacji");
                         String IloscProduktu1 = jsonChildNode.getString("Ilosc_Produktu_1");
                         String IloscProduktu2 = jsonChildNode.getString("Ilosc_Produktu_2");
                         String IloscProduktu3= jsonChildNode.getString("Ilosc_Produktu_3");

@@ -1,5 +1,7 @@
 <resources>
-    <string name="app_name">Pakownie Cukierkow</string>
+    <string name="app_name">Zamów cukierki</string>
+    <string name="hello_world">Zamów cukierki</string>
+    <string name="menu_settings">Zamów cukierki</string>
 
     <string name="TekstLogin">Login:</string>
     <string name="TekstPrzyklad">admin....</string>
@@ -8,7 +10,7 @@
     <string name="TekstButtonRegister">Zarejestruj</string>
     <string name="TekstButtonPlus1">+1</string>
     <string name="TekstButtonMinus1">-1</string>
-    <string name="TekstButtonZamow">Zloz zamowienie</string>
+    <string name="TekstButtonZamow">Złóż zamówienie</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="TekstZalogowany">Zalogowany jako:</string>

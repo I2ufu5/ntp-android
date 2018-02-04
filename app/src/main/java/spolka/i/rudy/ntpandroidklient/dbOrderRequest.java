@@ -19,7 +19,7 @@ import java.util.Map;
 
 public class dbOrderRequest extends StringRequest {
 
-    private static final String ORDER_REQUEST_URL = "https://ntpprojekt.000webhostapp.com/skladaniezamowienia.php";
+    private static final String ORDER_REQUEST_URL = "https://ntpprojekt.000webhostapp.com/skladaniezamowien.php";
     private Map<String, String> params;
 
     public dbOrderRequest(int userID, String productCount1, String productCount2, String productCount3, Response.Listener<String> listener) {
